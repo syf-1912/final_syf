@@ -1,9 +1,9 @@
 server:
-  port: 8989
-  context-path: /cmfz
   jsp-servlet:
     init-parameters:
       development: true
+  port: 8989
+  context-path: /cmfz
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver

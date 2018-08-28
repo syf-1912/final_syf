@@ -66,11 +66,6 @@
       <version>1.0.19</version>
     </dependency>
     <dependency>
-      <groupId>com.oracle</groupId>
-      <artifactId>ojdbc6</artifactId>
-      <version>1.1</version>
-    </dependency>
-    <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
       <version>3.2.8</version>

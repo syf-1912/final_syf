@@ -43,7 +43,7 @@
 								用户名:
 							</th>
 							<td>
-								<input type="text"  name="user.name" class="text" value="xxx" maxlength="20"/>
+                                <input type="text" name="name" class="text" value="xxx" maxlength="20"/>
 							</td>
 					  </tr>
 					  <tr>
@@ -51,7 +51,8 @@
 								密&nbsp;&nbsp;&nbsp;码:
 							</th>
 							<td>
-								<input type="password" name="user.password" class="text" value="xxx" maxlength="20" autocomplete="off"/>
+                                <input type="password" name="password" class="text" value="xxx" maxlength="20"
+                                       autocomplete="off"/>
 							</td>
 					  </tr>
 					
