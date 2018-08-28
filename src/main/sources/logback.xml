@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!--日志打印目的地-->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern> [%p] %d{yyyy-MM-dd HH:mm:ss} %m %n</pattern>
+        </layout>
+    </appender>
+    <!--指定父日志级别  并指定位置-->
+    <root level="info">
+        <appender-ref ref="stdout"/>
+    </root>
+    <!--指定子日志级别  默认遵循父日志目的地-->
+    <logger name="com.baizhi.service" level="DEBUG"/>
+</configuration>
