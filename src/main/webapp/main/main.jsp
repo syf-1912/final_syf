@@ -41,12 +41,18 @@
      * 创建选项卡
      */
     function addTabs(title, iconCls, href) {
-        $('#tt').tabs('add', {
-            title: title,
-            selected: true,
-            closable: true,
-            href: "${path}" + href
-        });
+        //判断当前选项卡是否已经存在
+        var flag = $('#tt').tabs('exists', title);
+        if (flag) {
+            $('#tt').tabs('select', title);
+        } else {
+            $('#tt').tabs('add', {
+                title: title,
+                selected: true,
+                closable: true,
+                href: "${path}" + href
+            });
+        }
     }
 </script>
 

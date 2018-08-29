@@ -2,8 +2,8 @@ server:
   jsp-servlet:
     init-parameters:
       development: true
-  port: 8989
   context-path: /cmfz
+  port: 8989
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -19,6 +19,10 @@ spring:
     encoding:
       charset: UTF-8
       force: true
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+
 mybatis:
   type-aliases-package: com.syf.entity
   mapper-locations: classpath:com/syf/mapper/*.xml
