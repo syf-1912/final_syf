@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.syf.dao.MenuDao">
+
+    <resultMap id="r1" type="Menu">
+        <id column="pid" property="id"/>
+        <result column="pt" property="title"/>
+        <result column="ph" property="href"/>
+        <result column="pic" property="iconCls"/>
+        <result column="pp" property="parntId"/>
+        <collection property="childrens" ofType="Menu">
+            <id column="cid" property="id"/>
+            <result column="ct" property="title"/>
+            <result column="ch" property="href"/>
+            <result column="cic" property="iconCls"/>
+            <result column="cp" property="parntId"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryAll" resultMap="r1">
+		SELECT
+			p.id pid,
+			p.title pt,
+			p.href ph,
+			p.iconCls pic,
+			p.parntId pp,
+			c.id cid,
+			c.title ct,
+			c.href ch,
+			c.iconCls cic,
+			c.parntId cp
+		FROM
+			menu p
+		INNER JOIN menu c ON p.id = c.parntId
+	</select>
+
+</mapper>
