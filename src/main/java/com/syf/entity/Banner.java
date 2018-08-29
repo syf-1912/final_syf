@@ -1,5 +1,7 @@
 package com.syf.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ public class Banner implements Serializable {
     private String imgPath;//图片路径
     private String description;//描述
     private String status;//状态
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;//创建日期
 
     public Banner() {
