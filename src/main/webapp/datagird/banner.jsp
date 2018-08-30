@@ -26,7 +26,7 @@
                             //关闭对话框
                             $('#al').dialog('close');
                             //刷新页面
-                            $('#dg').edatagrid('load');
+                            $('#dg').edatagrid('reload');
                         }
                     });
                 }
@@ -45,7 +45,7 @@
                                     type: 'post',
                                     data: 'id=' + row.id,
                                     success: function () {
-                                        $('#dg').edatagrid('load');
+                                        $('#dg').edatagrid('reload');
                                     }
                                 });
                             }
@@ -76,7 +76,7 @@
                 text: '保存',
                 handler: function () {
                     $('#dg').edatagrid('saveRow');
-                    $('#dg').edatagrid('load');
+                    $('#dg').edatagrid('reload');
                 }
             }
         ];
@@ -131,7 +131,7 @@
 
 <table id="dg"></table>
 <div style="padding:30px " id="al">
-    <form id="ff" method="post">
+    <form id="ff" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>名称</td>
@@ -148,19 +148,16 @@
             <tr>
                 <td>状态</td>
                 <td>
-                    <input type="text" name="status" class="easyui-textbox" data-options="required:true">
+                    <select class="easyui-combobox" name="status" style="width:200px;">
+                        <option value="Y">展示</option>
+                        <option value="N">不展示</option>
+                    </select>
                 </td>
             </tr>
             <tr>
-                <td>创建时间</td>
+                <td>图片</td>
                 <td>
-                    <input type="text" name="createDate" class="easyui-datebox" data-options="required:true">
-                </td>
-            </tr>
-            <tr>
-                <td>图片路径</td>
-                <td>
-                    <input type="text" name="imgPath" class="easyui-textbox" data-options="required:true">
+                    <input type="text" name="img" class="easyui-filebox" data-options="required:true">
                 </td>
             </tr>
             <tr align="center">

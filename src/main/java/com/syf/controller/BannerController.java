@@ -5,7 +5,9 @@ import com.syf.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +32,8 @@ public class BannerController {
     }
 
     @RequestMapping("/add")
-    public void add(Banner banner) {
-        bannerService.save(banner);
+    public void add(Banner banner, MultipartFile img, HttpServletRequest request) {
+        bannerService.save(banner, img, request);
     }
 
     @RequestMapping("/delete")
