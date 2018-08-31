@@ -19,10 +19,12 @@ spring:
     encoding:
       charset: UTF-8
       force: true
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
   jackson:
     date-format: yyyy-MM-dd
     time-zone: GMT+8
-
 mybatis:
   type-aliases-package: com.syf.entity
   mapper-locations: classpath:com/syf/mapper/*.xml
