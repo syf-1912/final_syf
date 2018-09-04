@@ -123,8 +123,12 @@
             pagination: true,
             toolbar: toolbar,
             onDblClickRow: function (row) {
-                $("#audio_dd").dialog("open");
-                $("#audio").prop("src", "${path}" + row.audioPath);
+                if (row.status == null) {
+                    $("#audio_dd").dialog("open");
+                    $("#audio").prop("src", "${path}" + row.audioPath);
+                } else {
+                    $.messager.alert('确认', '请选中音频');
+                }
             }
         });
     });

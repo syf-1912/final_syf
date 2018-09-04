@@ -16,6 +16,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Admin selectOne(String name, String password) {
+
         return adminDao.queryByUserNameAndPassword(name, password);
     }
 }

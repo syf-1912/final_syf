@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.syf.dao.UserDao">
+
+    <select id="queryAll" resultType="User">
+       SELECT * FROM USER limit #{page},#{rows}
+   </select>
+
+
+    <update id="update" parameterType="User">
+        UPDATE USER SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <select id="total" resultType="Integer">
+        SELECT COUNT(*) FROM USER
+    </select>
+
+    <insert id="save">
+        INSERT INTO USER(id,name,dharmaName,password,sex,province,city,phone,
+        sign,status,registDate)
+        VALUES
+        <foreach collection="users" item="user" index="index" separator=",">
+            (#{user.id},#{user.name},#{user.dharmaName},#{user.password},
+            #{user.sex},#{user.province},#{user.city},#{user.phone},
+            #{user.sign},#{user.status},#{user.registDate})
+        </foreach>
+    </insert>
+</mapper>

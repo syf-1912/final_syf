@@ -24,4 +24,9 @@ public class TestMenu {
             System.out.println(menu);
         }
     }
+
+    @Test
+    public void test2() {
+        System.out.println("哈哈哈");
+    }
 }

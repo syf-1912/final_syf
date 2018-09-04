@@ -16,9 +16,14 @@ public class AdminController {
 
     @RequestMapping("/login")
     public String login(String username, String password, HttpSession session) {
+
         Admin admin = adminService.selectOne(username, password);
-        session.setAttribute("admin", admin);
-        return "index";
+        if (admin == null) {
+            return "login";
+        } else {
+            session.setAttribute("admin", admin);
+            return "main/main";
+        }
     }
 
 }
