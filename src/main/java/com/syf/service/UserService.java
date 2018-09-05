@@ -1,6 +1,7 @@
 package com.syf.service;
 
 import com.syf.entity.User;
+import com.syf.entity.UserDto;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,4 +19,8 @@ public interface UserService {
     Workbook customerExport(String titles, String params, Integer page, Integer rows);
 
     void importData(MultipartFile file);
+
+    Integer queryByDate(Integer date);
+
+    List<UserDto> queryByProvince(String sex);
 }

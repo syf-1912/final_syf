@@ -2,6 +2,7 @@ package com.syf.service;
 
 import com.syf.dao.UserDao;
 import com.syf.entity.User;
+import com.syf.entity.UserDto;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -207,5 +208,16 @@ public class UserServiceImpl implements UserService {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public Integer queryByDate(Integer date) {
+        return userDao.queryByDate(date);
+    }
+
+    @Override
+    public List<UserDto> queryByProvince(String sex) {
+        return userDao.queryByProvince(sex);
     }
 }

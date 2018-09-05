@@ -25,4 +25,25 @@
             #{user.sign},#{user.status},#{user.registDate})
         </foreach>
     </insert>
+
+    <select id="queryByDate" parameterType="Integer" resultType="Integer">
+        <![CDATA[
+
+          select count(*) from user where datediff(NOW(),registDate)<#{date}
+
+        ]]>
+    </select>
+
+    <select id="queryByProvince" parameterType="String" resultType="UserDto">
+        SELECT
+            province name,
+            count(*) value
+        FROM
+            USER
+        WHERE
+            sex = #{sex}
+        GROUP BY
+            province
+    </select>
+
 </mapper>

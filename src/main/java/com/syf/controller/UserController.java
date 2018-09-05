@@ -1,6 +1,7 @@
 package com.syf.controller;
 
 import com.syf.entity.User;
+import com.syf.entity.UserDto;
 import com.syf.service.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -15,10 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
@@ -132,5 +130,41 @@ public class UserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 查看近期注册用户数量
+     */
+    @RequestMapping("/bar")
+    public Map<String, Object> bar() {
+        Map<String, Object> map = new HashMap<>();
+        //创建X轴数据集合
+        List<String> strs = new ArrayList<>();
+        strs.add("近1周");
+        strs.add("近2周");
+        strs.add("近3周");
+        strs.add("近1月");
+
+        //获取对应数据
+        List<Integer> users = new ArrayList<>();
+        users.add(userService.queryByDate(7));
+        users.add(userService.queryByDate(14));
+        users.add(userService.queryByDate(21));
+        users.add(userService.queryByDate(31));
+
+        //存入map返回
+        map.put("xAxis", strs);
+        map.put("users", users);
+        return map;
+    }
+
+    @RequestMapping("/map")
+    public Map<String, Object> map() {
+        Map<String, Object> map = new HashMap<>();
+        List<UserDto> mans = userService.queryByProvince("男");
+        List<UserDto> womens = userService.queryByProvince("女");
+        map.put("man", mans);
+        map.put("womens", womens);
+        return map;
     }
 }

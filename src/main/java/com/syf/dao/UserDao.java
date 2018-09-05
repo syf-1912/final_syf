@@ -1,6 +1,7 @@
 package com.syf.dao;
 
 import com.syf.entity.User;
+import com.syf.entity.UserDto;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,4 +14,8 @@ public interface UserDao {
     Integer total();
 
     void save(@Param("users") List<User> users);
+
+    Integer queryByDate(Integer date);
+
+    List<UserDto> queryByProvince(String sex);
 }
