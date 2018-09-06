@@ -1,5 +1,6 @@
 package com.syf.service;
 
+import com.syf.aspect.LogAnnotation;
 import com.syf.dao.UserDao;
 import com.syf.entity.User;
 import com.syf.entity.UserDto;
@@ -219,5 +220,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> queryByProvince(String sex) {
         return userDao.queryByProvince(sex);
+    }
+
+    @Override
+    @LogAnnotation(name = "注册")
+    public void regist(User user) {
+        System.out.println("----register method----");
     }
 }

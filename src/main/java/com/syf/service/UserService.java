@@ -23,4 +23,6 @@ public interface UserService {
     Integer queryByDate(Integer date);
 
     List<UserDto> queryByProvince(String sex);
+
+    void regist(User user);
 }

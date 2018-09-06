@@ -25,6 +25,8 @@ spring:
   jackson:
     date-format: yyyy-MM-dd
     time-zone: GMT+8
+  aop:
+    proxy-target-class: true
 mybatis:
   type-aliases-package: com.syf.entity
   mapper-locations: classpath:com/syf/mapper/*.xml
