@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -169,9 +168,9 @@ public class UserController {
         return map;
     }
 
-    @RequestMapping("/regist")
+    /*@RequestMapping("/regist")
     public void regist(User user, HttpSession session) {
         session.setAttribute("user", "小王");
         userService.regist(user);
-    }
+    }*/
 }

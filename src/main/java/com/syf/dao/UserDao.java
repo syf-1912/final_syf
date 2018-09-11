@@ -18,4 +18,8 @@ public interface UserDao {
     Integer queryByDate(Integer date);
 
     List<UserDto> queryByProvince(String sex);
+
+    User queryByPhone(String phone);
+
+    void insertUser(User user);
 }

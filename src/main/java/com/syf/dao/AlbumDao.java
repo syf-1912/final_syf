@@ -13,4 +13,8 @@ public interface AlbumDao {
     void delete(String id);
 
     Integer total();
+
+    List<Album> selectAll();
+
+    Album queryById(String id);
 }

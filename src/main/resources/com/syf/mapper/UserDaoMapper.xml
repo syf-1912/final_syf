@@ -29,7 +29,9 @@
     <select id="queryByDate" parameterType="Integer" resultType="Integer">
         <![CDATA[
 
+
           select count(*) from user where datediff(NOW(),registDate)<#{date}
+
 
         ]]>
     </select>
@@ -46,4 +48,12 @@
             province
     </select>
 
+    <select id="queryByPhone" resultType="User">
+        select * from user where phone = #{phone}
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+        insert into user(id,password,phone,salt,status,registDate)
+        values(#{id},#{password},#{phone},#{salt},#{status},#{registDate})
+    </insert>
 </mapper>

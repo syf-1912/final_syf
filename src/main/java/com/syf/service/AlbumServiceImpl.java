@@ -80,4 +80,16 @@ public class AlbumServiceImpl implements AlbumService {
     public Integer total() {
         return albumDao.total();
     }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Album> selectAll() {
+        return albumDao.selectAll();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public Album queryOne(String id) {
+        return albumDao.queryById(id);
+    }
 }

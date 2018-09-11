@@ -16,4 +16,6 @@ public interface BannerService {
     void update(Banner banner);
 
     Integer total();
+
+    List<Banner> selectAll();
 }

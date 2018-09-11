@@ -1,9 +1,9 @@
 package com.syf.service;
 
-import com.syf.aspect.LogAnnotation;
 import com.syf.dao.UserDao;
 import com.syf.entity.User;
 import com.syf.entity.UserDto;
+import com.syf.util.MD5Util;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -223,8 +224,46 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @LogAnnotation(name = "注册")
-    public void regist(User user) {
-        System.out.println("----register method----");
+    /*@LogAnnotation(name = "注册")*/
+    public User regist(String phone, String password) {
+        User user = userDao.queryByPhone(phone);
+        if (user != null) {
+            throw new RuntimeException("该手机号已存在");
+        } else {
+            //生成用户ID
+            User newUser = new User();
+            newUser.setId(UUID.randomUUID().toString().replace("-", ""));
+            //生成私盐
+            String salt = MD5Util.getSalt(4);
+            newUser.setSalt(salt);
+            //给密码加密存入用户信息
+            String newPass = MD5Util.jdkMD(salt + password);
+            newUser.setPassword(newPass);
+            //设置状态和注册时间、手机号
+            newUser.setPhone(phone);
+            newUser.setStatus("激活");
+            newUser.setRegistDate(new Date());
+            //存入数据库
+            userDao.insertUser(newUser);
+            return newUser;
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public User login(String phone, String password) {
+        User user = userDao.queryByPhone(phone);
+        if (user != null) {
+            //对用户输入的密码进行加密处理
+            final String jdkMD = MD5Util.jdkMD(user.getSalt() + password);
+            //判断加密后的密码与数据库查询密码是否一致
+            if (user.getPassword().equals(jdkMD)) {
+                return user;
+            } else {
+                throw new RuntimeException("密码错误");
+            }
+        } else {
+            throw new RuntimeException("用户不存在");
+        }
     }
 }

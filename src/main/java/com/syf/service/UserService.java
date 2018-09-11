@@ -24,5 +24,7 @@ public interface UserService {
 
     List<UserDto> queryByProvince(String sex);
 
-    void regist(User user);
+    User regist(String phone, String password);
+
+    User login(String phone, String password);
 }

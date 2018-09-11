@@ -15,4 +15,6 @@ public interface BannerDao {
     void update(Banner banner);
 
     Integer total();
+
+    List<Banner> selectAll();
 }

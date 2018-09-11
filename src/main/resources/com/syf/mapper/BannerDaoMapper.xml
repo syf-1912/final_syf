@@ -24,4 +24,8 @@
     <select id="total" resultType="java.lang.Integer">
         select count(*) from banner
     </select>
+
+    <select id="selectAll" resultType="Banner">
+        select * from banner where status = "Y"
+    </select>
 </mapper>

@@ -14,4 +14,8 @@ public interface AlbumService {
     void delete(String id);
 
     Integer total();
+
+    List<Album> selectAll();
+
+    Album queryOne(String id);
 }

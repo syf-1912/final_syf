@@ -82,4 +82,10 @@ public class BannerServiceImpl implements BannerService {
     public Integer total() {
         return bannerDao.total();
     }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Banner> selectAll() {
+        return bannerDao.selectAll();
+    }
 }
